@@ -13,6 +13,7 @@ class Card
         @value = value
         @face_up = false
         @@all_cards << self
+        @revealed
     end
 
     def status

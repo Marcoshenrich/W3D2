@@ -26,6 +26,7 @@ class Board
     #when game is running, reveal will change condition of card
     #input will be pos, which will be standard arr
 
+    #hash of all revealedmoves
 
 
   def initialize(size)
@@ -53,10 +54,6 @@ class Board
   end
 
   def render
-    # 0...size print for topline idx
-    # iterate through grid / row / card
-    # if faceup = true, print value, else print _
-    # farmost left before row, print row idx
 
     puts "  " + (0...@size).to_a.join(" ")
     @grid.each_with_index do |row, idx|
@@ -86,6 +83,16 @@ class Board
   def [](pos)
     row, col = pos
     @grid[row][col]
+  end
+
+  def valid_moves
+    valid_moves_arr = []
+    @grid.each_with_index do |row, i|
+      row.each_with_index do |card, j|
+        valid_moves_arr << [i,j] unless card.face_up
+      end
+    end
+    valid_moves_arr
   end
 
 end

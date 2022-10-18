@@ -52,6 +52,9 @@ class Game
         #compare guesses and either keep revealed or hide both
         if @board[guess_1] == @board[guess_2]
             #do nothing, check win
+            
+            # if match delete from compknowledge hash
+
             if @board.won?
             puts "Congratulations! You've won the game."
             exit
@@ -64,16 +67,6 @@ class Game
         @board.render
     end
 
-  end
-
-  def valid_moves
-    valid_moves_arr = []
-    @board.grid.each_with_index do |row, i|
-      row.each_with_index do |card, j|
-        valid_moves_arr << [i,j] unless card.face_up
-      end
-    end
-    valid_moves_arr
   end
 
 
