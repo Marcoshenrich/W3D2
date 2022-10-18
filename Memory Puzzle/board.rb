@@ -19,15 +19,20 @@ class Board
 
 
   #won?
+    #iterate through, check faceup. all must be
 
 
   #reveal
+    #when game is running, reveal will change condition of card
+    #input will be pos, which will be standard arr
+
 
 
   def initialize(size)
     size += 1 if size.odd?
     @size = size
     @grid = Array.new(size) { Array.new }
+    self.populate
   end
 
   def populate
@@ -49,7 +54,7 @@ class Board
 
   def render
     # 0...size print for topline idx
-    # iterate through grid / row / card 
+    # iterate through grid / row / card
     # if faceup = true, print value, else print _
     # farmost left before row, print row idx
 
@@ -67,6 +72,20 @@ class Board
 
         puts "#{idx} #{line.join(" ")}"
     end
+  end
+
+  def won?
+    @grid.all?{|row| row.all?{|card| card.face_up}}
+  end
+
+  def reveal(pos)
+    row, col = pos
+    @grid[row][col].reveal
+  end
+
+  def [](pos)
+    row, col = pos
+    @grid[row][col]
   end
 
 end

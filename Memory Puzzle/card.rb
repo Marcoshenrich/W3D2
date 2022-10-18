@@ -11,7 +11,7 @@ class Card
 
     def initialize(value)
         @value = value
-        @face_up = true
+        @face_up = false
         @@all_cards << self
     end
 
