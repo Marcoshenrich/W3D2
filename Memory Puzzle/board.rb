@@ -1,5 +1,5 @@
-require_relative "card"
-require_relative "game"
+require_relative "card.rb"
+require_relative "game.rb"
 
 
 class Board
@@ -58,7 +58,7 @@ class Board
     # if faceup = true, print value, else print _
     # farmost left before row, print row idx
 
-    puts (0..@size).to_a.join(" ")
+    puts "  " + (0...@size).to_a.join(" ")
     @grid.each_with_index do |row, idx|
         line = []
 

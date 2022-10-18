@@ -1,5 +1,5 @@
-require_relative "board"
-require_relative "game"
+require_relative "board.rb"
+require_relative "game.rb"
 
 class Card
     attr_reader :value, :face_up
