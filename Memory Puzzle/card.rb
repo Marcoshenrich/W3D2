@@ -2,7 +2,7 @@ require_relative "board"
 require_relative "game"
 
 class Card
-    attr_reader :value
+    attr_reader :value, :face_up
     @@all_cards = []
 
     def self.all_cards
@@ -11,7 +11,7 @@ class Card
 
     def initialize(value)
         @value = value
-        @face_up = false
+        @face_up = true
         @@all_cards << self
     end
 
