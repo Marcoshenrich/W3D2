@@ -20,8 +20,11 @@ require_relative "board.rb"
 
 class Game
 
-  def initialize(size)
+  def initialize(size=4,h_players=1,c_players=1)
     @board = Board.new(size)
+    @players = []
+    @players << HumanPlayer.new
+    @players << ComputerPlayer.new
   end
 
   def run_game
@@ -34,7 +37,14 @@ class Game
         @board.reveal(guess_1)
         @board.render
         puts "What's your second guess? Enter as 3,4"
-        guess_2 = gets.chomp.split(",").map(&:to_i)
+        while true
+          guess_2 = gets.chomp.split(",").map(&:to_i)
+          if guess_1 == guess_2
+            puts "You can't guess the same spot. Try again.`"
+          else
+            break
+          end
+        end
         system("clear")
         @board.reveal(guess_2)
         @board.render
@@ -56,7 +66,16 @@ class Game
 
   end
 
+  def valid_moves
+    valid_moves_arr = []
+    @board.grid.each_with_index do |row, i|
+      row.each_with_index do |card, j|
+        valid_moves_arr << [i,j] unless card.face_up
+      end
+    end
+    valid_moves_arr
+  end
+
 
 
 end
-
