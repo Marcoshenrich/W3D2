@@ -52,7 +52,7 @@ class Game
         #compare guesses and either keep revealed or hide both
         if @board[guess_1] == @board[guess_2]
             #do nothing, check win
-            
+
             # if match delete from compknowledge hash
 
             if @board.won?
@@ -67,6 +67,18 @@ class Game
         @board.render
     end
 
+  end
+
+  def turn
+    guess_1 = @player.guess_1
+    ComputerPlayer.revealed_cards=(guess_1, @grid)
+    system("clear")
+    @board.reveal(guess_1)
+    @board.render
+
+
+
+    guess_2 = @player.guess_2
   end
 
 
